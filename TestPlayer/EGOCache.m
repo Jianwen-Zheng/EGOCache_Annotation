@@ -50,7 +50,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 	NSString* _directory;
 	BOOL _needsSave;
 }
-
+//冻结缓存字典,一般只在同步中操作
 @property(nonatomic,copy) NSDictionary* frozenCacheInfo;
 @end
 
@@ -146,7 +146,9 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		}
 		
 		[_cacheInfo removeObjectsForKeys:removedKeys];
+        //移除完过期缓存后,将实现的缓存放倒冻结缓存字典中
 		self.frozenCacheInfo = _cacheInfo;
+        //设置过期时间(一天)
 		[self setDefaultTimeoutInterval:86400];
 	}
 	
@@ -160,7 +162,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		}
 		
 		[_cacheInfo removeAllObjects];
-		
+        //先移除cacheInfo再移除冻结缓存字典
 		dispatch_sync(_frozenCacheInfoQueue, ^{
 			self.frozenCacheInfo = [_cacheInfo copy];
 		});
@@ -209,6 +211,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 }
 
 - (void)setCacheTimeoutInterval:(NSTimeInterval)timeoutInterval forKey:(NSString*)key {
+    //这个是创建一个过期时间,是在现在时间+一天的秒数
 	NSDate* date = timeoutInterval > 0 ? [NSDate dateWithTimeIntervalSinceNow:timeoutInterval] : nil;
 	
 	// Temporarily store in the frozen state for quick reads
@@ -218,6 +221,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		if(date) {
 			info[key] = date;
 		} else {
+            //如果设置的过期秒数小于0,则过期时间为nil.就在plist中移除key
 			[info removeObjectForKey:key];
 		}
 		
@@ -271,6 +275,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		[data writeToFile:cachePath atomically:YES];
 	});
 	
+    //保存过期时间到EGOCache.plist中
 	[self setCacheTimeoutInterval:timeoutInterval forKey:key];
 }
 
@@ -283,6 +288,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
 		dispatch_after(popTime, _cacheInfoQueue, ^(void){
 			if(!_needsSave) return;
+            //将缓存字典写入plist文件
 			[_cacheInfo writeToFile:cachePathForKey(_directory, @"EGOCache.plist") atomically:YES];
 			_needsSave = NO;
 		});
@@ -396,6 +402,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 }
 
 - (void)setObject:(id<NSCoding>)anObject forKey:(NSString*)key withTimeoutInterval:(NSTimeInterval)timeoutInterval {
+    //将实现NSCoding的对象进行归档
 	[self setData:[NSKeyedArchiver archivedDataWithRootObject:anObject] forKey:key withTimeoutInterval:timeoutInterval];
 }
 
