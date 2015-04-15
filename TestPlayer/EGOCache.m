@@ -110,6 +110,9 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		_directory = cacheDirectory;
 
         //第一次_cacheInfo为空，{}，存了一个image之后是这样的
+        
+#warning  这是缓存过期时间.是缓存当时时间加上了一天时间
+        
         /*
          _cacheInfo is {
          zqlImageKey = "2015-04-16 07:13:29 +0000";
@@ -130,6 +133,11 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		NSMutableArray* removedKeys = [[NSMutableArray alloc] init];
 		
 		for(NSString* key in _cacheInfo) {
+            
+            
+#warning 这个是看过期时间是否大于现在时间
+            
+            
             // 这个地方不应该是now-defaultTimeoutInterval?
 			if([_cacheInfo[key] timeIntervalSinceReferenceDate] <= now) {
 				[[NSFileManager defaultManager] removeItemAtPath:cachePathForKey(_directory, key) error:NULL];
