@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40490D761ADE3F2C002EA037 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 40490D751ADE3F2C002EA037 /* EGOCache.m */; };
+		40490D781ADE46D6002EA037 /* bomei.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40490D771ADE46D6002EA037 /* bomei.jpg */; };
 		4072E74A1ADE05AD003FA298 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4072E7491ADE05AD003FA298 /* main.m */; };
 		4072E74D1ADE05AD003FA298 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4072E74C1ADE05AD003FA298 /* AppDelegate.m */; };
 		4072E7501ADE05AD003FA298 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4072E74F1ADE05AD003FA298 /* ViewController.m */; };
@@ -27,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40490D741ADE3F2C002EA037 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		40490D751ADE3F2C002EA037 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
+		40490D771ADE46D6002EA037 /* bomei.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bomei.jpg; sourceTree = "<group>"; };
 		4072E7441ADE05AD003FA298 /* TestPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4072E7481ADE05AD003FA298 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4072E7491ADE05AD003FA298 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +86,9 @@
 		4072E7461ADE05AD003FA298 /* TestPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				40490D771ADE46D6002EA037 /* bomei.jpg */,
+				40490D741ADE3F2C002EA037 /* EGOCache.h */,
+				40490D751ADE3F2C002EA037 /* EGOCache.m */,
 				4072E74B1ADE05AD003FA298 /* AppDelegate.h */,
 				4072E74C1ADE05AD003FA298 /* AppDelegate.m */,
 				4072E74E1ADE05AD003FA298 /* ViewController.h */,
@@ -199,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40490D781ADE46D6002EA037 /* bomei.jpg in Resources */,
 				4072E7531ADE05AD003FA298 /* Main.storyboard in Resources */,
 				4072E7581ADE05AD003FA298 /* LaunchScreen.xib in Resources */,
 				4072E7551ADE05AD003FA298 /* Images.xcassets in Resources */,
@@ -219,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40490D761ADE3F2C002EA037 /* EGOCache.m in Sources */,
 				4072E7501ADE05AD003FA298 /* ViewController.m in Sources */,
 				4072E74D1ADE05AD003FA298 /* AppDelegate.m in Sources */,
 				4072E74A1ADE05AD003FA298 /* main.m in Sources */,
@@ -418,6 +428,7 @@
 				4072E7691ADE05AE003FA298 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4072E76A1ADE05AE003FA298 /* Build configuration list for PBXNativeTarget "TestPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +437,7 @@
 				4072E76C1ADE05AE003FA298 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
